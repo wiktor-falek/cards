@@ -3,7 +3,8 @@
 ## Installation
 
 ```bash
-# TODO
+# clone the project
+git clone git@github.com:wiktor-falek/cards.git
 ```
 
 ## Projects
