@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsc-watch --onSuccess \"node .\" "
+    "dev": "tsc-watch --onSuccess \"node -r dotenv/config . dotenv_config_path=../.env\" "
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/node": "^20.4.9",
+    "dotenv": "^16.3.1",
     "tsc-watch": "^6.0.4",
     "typescript": "^5.1.6"
   },
