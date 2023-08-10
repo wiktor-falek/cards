@@ -1,0 +1,26 @@
+{
+  "name": "cards",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=frontend\" \"npm run dev --workspace=socket-server\"",
+    "dev:client": "cd frontend && npm run dev",
+    "dev:backend": "cd socket-server && npm run dev",
+    "i-client": "npm install -w frontend/ ",
+    "uni-client": "npm uninstall -w frontend/ ",
+    "i-backend": "npm install -w socket-server/ ",
+    "uni-backend": "npm uninstall -w socket-server/ "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wiktor-falek/cards.git"
+  },
+  "license": "ISC",
+  "homepage": "https://github.com/wiktor-falek/cards#readme",
+  "workspaces": [
+    "frontend",
+    "socket-server"
+  ],
+  "dependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
