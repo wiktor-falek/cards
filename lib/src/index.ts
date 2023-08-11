@@ -25,6 +25,10 @@ class Card {
     this.rank = rank;
     this.face = face;
   }
+
+  get name() {
+    return `${this.rank} of ${this.face}`;
+  }
 }
 
 class Deck {
