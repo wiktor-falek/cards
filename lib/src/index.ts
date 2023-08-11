@@ -14,40 +14,47 @@ const ranks = [
   "King",
 ] as const;
 
-const faces = ["Spades", "Diamonds", "Clubs", "Hearts"] as const;
+const suits = ["Spades", "Diamonds", "Clubs", "Hearts"] as const;
 
+// create union types out of ranks and suits
 type Rank = (typeof ranks)[number];
 
-type Face = (typeof faces)[number];
+type Suit = (typeof suits)[number];
 
-class Card {
-  constructor(public rank: Rank, public face: Face) {
+export class Card {
+  constructor(public rank: Rank, public suit: Suit) {
     this.rank = rank;
-    this.face = face;
+    this.suit = suit;
   }
 
   get name() {
-    return `${this.rank} of ${this.face}`;
+    return `${this.rank} of ${this.suit}`;
   }
 }
 
-class Deck {
+export class Deck {
   cards: Card[];
   constructor() {
     // according to USPCC new deck list
-    this.cards = faces.flatMap((face, i) =>
+    this.cards = suits.flatMap((suit, i) =>
       i < 2
-        ? ranks.map((rank) => new Card(rank, face))
-        : ranks.map((rank) => new Card(rank, face)).reverse()
+        ? ranks.map((rank) => new Card(rank, suit))
+        : ranks.map((rank) => new Card(rank, suit)).reverse()
     );
   }
 
   shuffle() {}
 
-  draw() {}
+  draw(amount: number) {
+    if (this.cards.length < amount) {
+      return [];
+    }
+    const cards = this.cards.splice(0, amount);
+    return cards;
+  }
 }
 
-function getCardValue(card: Card) {
+export function getCardValue(card: Card) {
   switch (card.rank) {
     case "Ace":
       return 14;
