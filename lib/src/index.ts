@@ -29,17 +29,32 @@ const suits = ["Spades", "Diamonds", "Clubs", "Hearts"] as const;
 
 // create union types out of ranks and suits
 type Rank = (typeof ranks)[number];
-
 type Suit = (typeof suits)[number];
 
 export class Card {
-  constructor(public rank: Rank, public suit: Suit) {
-    this.rank = rank;
-    this.suit = suit;
+  #rank: Rank;
+  #suit: Suit;
+  isVisible: boolean;
+  constructor(rank: Rank, suit: Suit, isVisible = true) {
+    this.#rank = rank;
+    this.#suit = suit;
+    this.isVisible = isVisible;
+  }
+
+  flip() {
+    this.isVisible = !this.isVisible;
+  }
+
+  get rank() {
+    return this.isVisible ? this.#rank : undefined;
+  }
+
+  get suit() {
+    return this.isVisible ? this.#suit : undefined;
   }
 
   get name() {
-    return `${this.rank} of ${this.suit}`;
+    return this.isVisible ? `${this.#rank} of ${this.#suit}` : "";
   }
 }
 
@@ -95,6 +110,8 @@ export function getCardValueBlackjack(card: Card) {
       return 3;
     case "2":
       return 2;
+    default:
+      return 0;
   }
 }
 
