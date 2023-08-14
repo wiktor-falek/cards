@@ -8,7 +8,6 @@ git clone git@github.com:wiktor-falek/cards.git
 
 # run install command
 npm install
-
 ```
 
 **Folders structure**
